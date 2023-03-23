@@ -1,22 +1,21 @@
 package com.javarush.quest.marzhiievskyi.repository.hibernatedb;
 
 import com.javarush.quest.marzhiievskyi.entity.User;
-import com.javarush.quest.marzhiievskyi.repository.Repository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.Collection;
-import java.util.stream.Stream;
 
-public class UserDB implements Repository<User> {
+
+public class UserDB implements HibernateRepository<User> {
 
     @Override
-    public Stream<User> find(User pattern) {
+    public User find(User pattern) {
         try (Session session = HibernateConnection.getSessionFactory().openSession()) {
-            Query<User> query = session.createQuery("from User where User.login = :patternLogin", User.class);
+            Query<User> query = session.createQuery("from User u where u.login = :patternLogin", User.class);
             query.setParameter("patternLogin", pattern.getLogin());
-            return (Stream<User>) query.uniqueResult();
+            return query.uniqueResult();
         }
     }
 
@@ -61,15 +60,6 @@ public class UserDB implements Repository<User> {
             transaction.commit();
         }
 
-    }
-
-    public static void main(String[] args) {
-        User demoUser = User.builder()
-                .id(10L)
-                .build();
-
-        UserDB repo = new UserDB();
-        repo.getAll().forEach(System.out::println);
     }
 
 }
