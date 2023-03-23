@@ -1,6 +1,7 @@
-package com.javarush.quest.marzhiievskyi.repository;
+package com.javarush.quest.marzhiievskyi.repository.memorydb;
 
 import com.javarush.quest.marzhiievskyi.entity.AbstractEntity;
+import com.javarush.quest.marzhiievskyi.repository.Repository;
 
 import java.util.Collection;
 import java.util.HashMap;

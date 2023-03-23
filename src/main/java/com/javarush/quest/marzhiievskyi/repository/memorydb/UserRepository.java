@@ -1,4 +1,4 @@
-package com.javarush.quest.marzhiievskyi.repository;
+package com.javarush.quest.marzhiievskyi.repository.memorydb;
 
 import com.javarush.quest.marzhiievskyi.entity.User;
 
