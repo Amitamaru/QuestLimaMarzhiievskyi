@@ -1,4 +1,4 @@
-package com.javarush.quest.marzhiievskyi.repository;
+package com.javarush.quest.marzhiievskyi.repository.memorydb;
 
 import java.util.Collection;
 import java.util.stream.Stream;

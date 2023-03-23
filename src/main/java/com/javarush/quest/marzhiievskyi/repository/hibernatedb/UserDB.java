@@ -42,7 +42,6 @@ public class UserDB implements HibernateRepository<User> {
         }
     }
 
-
     @Override
     public void update(User userToUpdate) {
         try (Session session = HibernateConnection.getSessionFactory().openSession()) {

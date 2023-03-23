@@ -3,7 +3,7 @@ package com.javarush.quest.marzhiievskyi.service;
 import com.javarush.quest.marzhiievskyi.entity.GameSession;
 import com.javarush.quest.marzhiievskyi.entity.GameState;
 import com.javarush.quest.marzhiievskyi.entity.User;
-import com.javarush.quest.marzhiievskyi.repository.Repository;
+import com.javarush.quest.marzhiievskyi.repository.memorydb.Repository;
 import com.javarush.quest.marzhiievskyi.repository.memorydb.UserRepository;
 
 import java.util.ArrayList;
