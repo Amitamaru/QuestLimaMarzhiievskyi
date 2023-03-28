@@ -7,6 +7,7 @@ import java.util.Collection;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -23,6 +24,7 @@ public class Quest implements AbstractEntity{
     private Long startQuestionId;
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "quest_id")
+    @ToString.Exclude
     private Collection<Question> questions = new ArrayList<>();
 
 //    private Collection<User> players = new ArrayList<>();
