@@ -22,11 +22,17 @@ public class User implements AbstractEntity {
     private String login;
     @Column(name = "password")
     private String password;
-    @Transient
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "t_user_id")
+    @ToString.Exclude
     private Collection<GameSession> games = new ArrayList<>();
-    @Transient
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "t_user_id")
+    @ToString.Exclude
     private Collection<GameSession> wins = new ArrayList<>();
-    @Transient
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "t_user_id")
+    @ToString.Exclude
     private Collection<GameSession> losses = new ArrayList<>();
 
 
