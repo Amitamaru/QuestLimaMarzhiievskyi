@@ -44,17 +44,6 @@ CREATE TABLE IF NOT EXISTS `quest_db`.`quest`
     ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `quest_db`.`game_state`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `quest_db`.`game_state`
-(
-    `value` VARCHAR(45) NOT NULL,
-    PRIMARY KEY (`value`),
-    UNIQUE INDEX `value_UNIQUE` (`value` ASC) VISIBLE
-)
-    ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `quest_db`.`question`
@@ -68,11 +57,6 @@ CREATE TABLE IF NOT EXISTS `quest_db`.`question`
     PRIMARY KEY (`id`),
     INDEX `fk_question_game_state_idx` (`game_state` ASC) VISIBLE,
     INDEX `fk_question_quest1_idx` (`quest_id` ASC) VISIBLE,
-    CONSTRAINT `fk_question_game_state`
-        FOREIGN KEY (`game_state`)
-            REFERENCES `quest_db`.`game_state` (`value`)
-            ON DELETE RESTRICT
-            ON UPDATE RESTRICT,
     CONSTRAINT `fk_question_quest1`
         FOREIGN KEY (`quest_id`)
             REFERENCES `quest_db`.`quest` (`id`)
@@ -125,11 +109,6 @@ CREATE TABLE IF NOT EXISTS `quest_db`.`game_session`
         FOREIGN KEY (`quest_id`)
             REFERENCES `quest_db`.`quest` (`id`)
             ON DELETE RESTRICT
-            ON UPDATE RESTRICT,
-    CONSTRAINT `fk_game_session_game_state1`
-        FOREIGN KEY (`game_state`)
-            REFERENCES `quest_db`.`game_state` (`value`)
-            ON DELETE CASCADE
             ON UPDATE RESTRICT
 )
     ENGINE = InnoDB;

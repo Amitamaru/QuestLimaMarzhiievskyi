@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1680637407802-1" author="dmitromarzievskij (generated)">
+        <createTable tableName="answer">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="text" type="VARCHAR(45)"/>
+            <column name="question_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="next_question_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1680637407802-2" author="dmitromarzievskij (generated)">
+        <createTable tableName="game_session">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="t_user_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quest_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="game_state" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_question_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1680637407802-3" author="dmitromarzievskij (generated)">
+        <createTable tableName="quest">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)"/>
+            <column name="text" type="VARCHAR(264)"/>
+            <column name="starting_question_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1680637407802-4" author="dmitromarzievskij (generated)">
+        <createTable tableName="question">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="text" type="VARCHAR(264)"/>
+            <column name="game_state" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quest_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1680637407802-5" author="dmitromarzievskij (generated)">
+        <createTable tableName="t_user">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="login" type="VARCHAR(45)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1680637407802-6" author="dmitromarzievskij (generated)">
+        <createIndex indexName="fk_answer_question1_idx" tableName="answer">
+            <column name="question_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1680637407802-7" author="dmitromarzievskij (generated)">
+        <createIndex indexName="fk_game_session_game_state1_idx" tableName="game_session">
+            <column name="game_state"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1680637407802-8" author="dmitromarzievskij (generated)">
+        <createIndex indexName="fk_game_session_quest1_idx" tableName="game_session">
+            <column name="quest_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1680637407802-9" author="dmitromarzievskij (generated)">
+        <createIndex indexName="fk_game_session_t_user1_idx" tableName="game_session">
+            <column name="t_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1680637407802-10" author="dmitromarzievskij (generated)">
+        <createIndex indexName="fk_question_game_state_idx" tableName="question">
+            <column name="game_state"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1680637407802-11" author="dmitromarzievskij (generated)">
+        <createIndex indexName="fk_question_quest1_idx" tableName="question">
+            <column name="quest_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1680637407802-12" author="dmitromarzievskij (generated)">
+        <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="answer"
+                                 constraintName="fk_answer_question1" onDelete="CASCADE" onUpdate="CASCADE"
+                                 referencedColumnNames="id" referencedTableName="question"/>
+    </changeSet>
+    <changeSet id="1680637407802-13" author="dmitromarzievskij (generated)">
+        <addForeignKeyConstraint baseColumnNames="quest_id" baseTableName="game_session"
+                                 constraintName="fk_game_session_quest1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="quest"/>
+    </changeSet>
+    <changeSet id="1680637407802-14" author="dmitromarzievskij (generated)">
+        <addForeignKeyConstraint baseColumnNames="t_user_id" baseTableName="game_session"
+                                 constraintName="fk_game_session_t_user1" onDelete="CASCADE" onUpdate="CASCADE"
+                                 referencedColumnNames="id" referencedTableName="t_user"/>
+    </changeSet>
+    <changeSet id="1680637407802-15" author="dmitromarzievskij (generated)">
+        <addForeignKeyConstraint baseColumnNames="quest_id" baseTableName="question" constraintName="fk_question_quest1"
+                                 onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id"
+                                 referencedTableName="quest"/>
+    </changeSet>
+
+</databaseChangeLog>
